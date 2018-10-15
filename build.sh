@@ -11,10 +11,12 @@ fi
 
 for infile; do
     if [ "${infile##*.}" = js ]; then
-        OSALANG='-l JavaScript'
+        osalang='-l JavaScript'
+    else
+        osalang=
     fi
     outfile=${infile%.*}.scpt
-    osacompile $OSALANG -o "$outfile" "$infile" || exit
+    osacompile $osalang -o "$outfile" "$infile" || exit
 
     # osascript(1) prints the result to stdout, which is pointless here.
     osascript - "$outfile" >/dev/null <<'EOF'
