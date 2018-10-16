@@ -2,10 +2,10 @@
  * Duplicate Window in Safari
  *
  * Open a new Safari window containing the same tabs that are open in
- * the frontmost Chrome window (skipping Bookmarks, Favorites, History,
- * and Top Sites).
+ * the frontmost Chrome window (excluding Chrome-specific tabs like
+ * Bookmarks, Extensions, History, and Settings).
  *
- * Last updated 2018-10-15.
+ * Last updated 2018-10-18.
  */
 
 'use strict';

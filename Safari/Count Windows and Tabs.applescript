@@ -4,12 +4,12 @@
  * Count Safari's windows and tabs and display the results. Only windows
  * that are visible or minimized are included.
  *
- * Last updated 2018-10-15.
+ * Last updated 2018-10-18.
  *)
 
 tell application id "com.apple.Safari"
     set _windows to a reference to ¬
-            every window whose visible is true or miniaturized is true
+            every window where it is visible or it is miniaturized
     set _winCount to count of _windows
     set _tabCount to count of every tab of _windows
 end tell
