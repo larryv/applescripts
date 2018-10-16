@@ -17,7 +17,7 @@ for infile; do
         osalang=
     fi
     outfile=${infile%.*}.scpt
-    osacompile $osalang -o "$outfile" "$infile" || exit
+    osacompile $osalang -x -o "$outfile" "$infile" || exit
 
     # Transform the positional parameters into a list of output
     # filenames, which will be passed all at once to the final
