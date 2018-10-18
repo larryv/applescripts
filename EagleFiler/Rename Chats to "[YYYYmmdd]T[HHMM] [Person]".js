@@ -24,18 +24,26 @@
 
 'use strict';
 
-// Ideally this would be const, but global const/let declarations
+// Ideally these would be const, but global const/let declarations
 // interact poorly with OSA persistence.
 var chatfmt =
         /^(.+?) on (\d{4})-(\d{2})-(\d{2}) at (\d{2})\.(\d{2})(?: (#\d+))?$/;
-
-Application('com.c-command.EagleFiler').browserWindows[0].selectedRecords()
+var records = Application('com.c-command.EagleFiler')
+        .browserWindows[0]
+        .selectedRecords()
         .filter(record => record.kind() === 'Chat')
         .map(record => ({record, metadata: chatfmt.exec(record.basename())}))
-        .filter(({metadata}) => metadata)
-        .forEach(({record, metadata: [, from, YYYY, mm, dd, HH, MM, num]}) => {
-            const suffix = num ? ` (${num})` : '';
-            record.title = `${YYYY}-${mm}-${dd} ${HH}:${MM}${suffix}`;
-            record.fromName = from;
-            record.basename = `${YYYY}${mm}${dd}T${HH}${MM} ${person}${suffix}`;
-        });
+        .filter(({metadata}) => metadata);
+
+// Update the progress UI displayed when running scripts from Apple's
+// Script Menu.
+Progress.totalUnitCount = records.length;
+Progress.completedUnitCount = 0;
+
+records.forEach(({record, metadata: [, from, YYYY, mm, dd, HH, MM, num]}) => {
+    const suffix = num ? ` (${num})` : '';
+    record.title = `${YYYY}-${mm}-${dd} ${HH}:${MM}${suffix}`;
+    record.fromName = from;
+    record.basename = `${YYYY}${mm}${dd}T${HH}${MM} ${from}${suffix}`;
+    Progress.completedUnitCount++;
+});
