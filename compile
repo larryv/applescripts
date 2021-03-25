@@ -1,12 +1,11 @@
 #!/bin/sh
 
 # Compile the AppleScript or JavaScript for Automation source files
-# provided as arguments. Place each compiled script in the same
-# directory as its source. Hide the outputs' filename extensions, as
-# Apple's Script Editor does.
+# provided as arguments, placing each compiled script in the same
+# directory as its source.
 
 if [ "$#" -lt 1 ]; then
-    printf 'Usage: %s script1 [script2 ...]\n' "$0" >&2
+    printf %s\\n 'usage: compile script1 [script2 ...]' >&2
     exit 1
 fi
 
@@ -19,19 +18,16 @@ for infile; do
     outfile=${infile%.*}.scpt
     osacompile $osalang -x -o "$outfile" "$infile" || exit
 
-    # Transform the positional parameters into a list of output
-    # filenames, which will be passed all at once to the final
-    # AppleScript.
+    # Collect the output filenames for the grand finale.
     shift
     set -- "$@" "$outfile"
 done
 
-# osascript(1) prints the result to stdout, which is pointless here.
+# Hide the outputs' filename extensions, as Apple's Script Editor does.
+# Discard the result printed by osascript(1), which I don't care about.
 osascript - "$@" >/dev/null <<'EOF'
 on run _argv
     repeat with _arg in _argv
-        -- "POSIX file" must remain outside the "tell app 'Finder'"
-        -- block to avoid a terminology conflict.
         set _f to POSIX file _arg as alias
         tell application "Finder" to set (extension hidden) of _f to true
     end repeat
