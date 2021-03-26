@@ -10,13 +10,23 @@ if [ "$#" -lt 1 ]; then
 fi
 
 for infile; do
-    if [ "${infile##*.}" = js ]; then
-        osalang='-l JavaScript'
-    else
-        osalang=
-    fi
-    outfile=${infile%.*}.scpt
-    osacompile $osalang -x -o "$outfile" "$infile" || exit
+    case $infile in
+        *?.applescript)
+            osalang=
+            outfile=${infile%.*}.scpt
+            ;;
+        *?.js)
+            osalang='-l JavaScript'
+            outfile=${infile%.*}.scpt
+            ;;
+        *)
+            # Be conservative with oddly named files: use the default
+            # language and don't strip extensions.
+            osalang=
+            outfile=$infile.scpt
+            ;;
+    esac
+    osacompile $osalang -x -o "$outfile" -- "$infile" || exit
 
     # Collect the output filenames for the grand finale.
     shift
