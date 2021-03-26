@@ -9,6 +9,8 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
+rc=0
+
 for infile; do
     case $infile in
         *?.applescript)
@@ -26,16 +28,19 @@ for infile; do
             outfile=$infile.scpt
             ;;
     esac
-    osacompile -l "$osalang" -x -o "$outfile" -- "$infile" || exit
 
-    # Collect the output filenames for the grand finale.
     shift
-    set -- "$@" "$outfile"
+    if osacompile -l "$osalang" -x -o "$outfile" -- "$infile"; then
+        # Collect the output filenames for the grand finale.
+        set -- "$@" "$outfile"
+    else
+        rc=$?
+    fi
 done
 
 # Hide the outputs' filename extensions, as Apple's Script Editor does.
 # Discard the result printed by osascript(1), which I don't care about.
-osascript - "$@" >/dev/null <<'EOF'
+osascript - "$@" >/dev/null <<'EOF' && exit "$rc"
 on run _argv
     repeat with _arg in _argv
         set _f to POSIX file _arg as alias
