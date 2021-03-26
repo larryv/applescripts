@@ -12,21 +12,21 @@ fi
 for infile; do
     case $infile in
         *?.applescript)
-            osalang=
+            osalang=AppleScript
             outfile=${infile%.*}.scpt
             ;;
         *?.js)
-            osalang='-l JavaScript'
+            osalang=JavaScript
             outfile=${infile%.*}.scpt
             ;;
         *)
             # Be conservative with oddly named files: use the default
             # language and don't strip extensions.
-            osalang=
+            osalang=AppleScript
             outfile=$infile.scpt
             ;;
     esac
-    osacompile $osalang -x -o "$outfile" -- "$infile" || exit
+    osacompile -l "$osalang" -x -o "$outfile" -- "$infile" || exit
 
     # Collect the output filenames for the grand finale.
     shift
