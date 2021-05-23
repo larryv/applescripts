@@ -5,6 +5,9 @@
  * Google Hangouts extension) to 1080 points × 877 points.
  *
  * Last updated 2018-10-16.
+ *
+ * Copyright 2018 Lawrence Andrew Velázquez
+ * SPDX-License-Identifier: MIT
  *)
 
 -- Desired dimensions on a display of 1440 pts × 900 pts.

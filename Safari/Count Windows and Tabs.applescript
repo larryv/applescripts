@@ -5,6 +5,9 @@
  * that are visible or minimized are included.
  *
  * Last updated 2018-10-18.
+ *
+ * Copyright 2018 Lawrence Andrew Velázquez
+ * SPDX-License-Identifier: MIT
  *)
 
 tell application id "com.apple.Safari"

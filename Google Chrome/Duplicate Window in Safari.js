@@ -6,6 +6,9 @@
  * Bookmarks, Extensions, History, and Settings).
  *
  * Last updated 2018-10-18.
+ *
+ * Copyright 2018 Lawrence Andrew Velázquez
+ * SPDX-License-Identifier: MIT
  */
 
 'use strict';

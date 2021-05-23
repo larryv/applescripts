@@ -16,6 +16,9 @@
  * Selected records that are not transcripts are not modified.
  *
  * Last updated 2018-11-02.
+ *
+ * Copyright 2018 Lawrence Andrew Velázquez
+ * SPDX-License-Identifier: MIT
  */
 
 'use strict';

@@ -5,6 +5,9 @@
  * windows that are visible or minimized are included.
  *
  * Last updated 2018-10-18.
+ *
+ * Copyright 2013-2014, 2018 Lawrence Andrew Velázquez
+ * SPDX-License-Identifier: MIT
  *)
 
 tell application id "com.google.Chrome"
