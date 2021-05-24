@@ -1,7 +1,7 @@
 /*
- * Duplicate Window in Google Chrome
+ * Duplicate Safari Window in Google Chrome
  *
- * Open a new Chrome window containing the same tabs that are open in
+ * Opens a new Chrome window containing the same tabs that are open in
  * the frontmost Safari window (excluding Safari-specific tabs like
  * Bookmarks, Favorites, History, and Top Sites).
  *
@@ -19,7 +19,7 @@ var Chrome = Application('com.google.Chrome');
 var Safari = Application('com.apple.Safari');
 
 /*
- * Given a reference to a Safari window, return an array containing the
+ * Given a reference to a Safari window, returns an array containing the
  * URIs of the window's tabs. The URIs are ordered by tab position, from
  * left to right. Safari-specific URIs (e.g., "history://") are
  * included. The URI "about:blank" is returned for blank tabs.
@@ -105,7 +105,7 @@ function isSafariSpecialURI(uri) {
 }
 
 /*
- * Given an array of URIs, create a new Chrome window with a tab for each.
+ * Given an array of URIs, creates a new Chrome window with a tab for each.
  */
 function makeNewChromeWindowWithURIs(uris) {
     let window = Chrome.Window().make();
@@ -119,7 +119,7 @@ function makeNewChromeWindowWithURIs(uris) {
 
 /*
  * Given an object containing named parameters for displayAlert(),
- * display an alert and throw an exception.
+ * displays an alert and throws an exception.
  */
 function throwAlert(alertParameters) {
     // Should Safari display the alert instead of the script runner?

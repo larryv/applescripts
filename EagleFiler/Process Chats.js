@@ -2,8 +2,8 @@
  * Process Chats
  *
  * If any selected EagleFiler records are iChat/Messages transcripts,
- * extract their starting times and participants' names (excluding
- * mine!) and set their EagleFiler fields as follows:
+ * extracts their starting times and participants' names (excluding
+ * mine!) and sets their EagleFiler fields as follows:
  *
  *      title:      [YYYY]-[MM]-[DD] [hh]:[mm]:[ss] UTC
  *      from name:  [Participants]
@@ -24,7 +24,7 @@
 'use strict';
 
 /*
- * Given a Date, return an object containing string properties for its
+ * Given a Date, returns an object containing string properties for its
  * year, month (01-12), day, hour (00-23), minute, and second. All
  * properties other than the year are zero-padded to length 2.
  */
@@ -41,7 +41,7 @@ function getFormattedDateComponentsInUTC(date) {
 }
 
 /*
- * Given a Path to an iChat/Messages transcript, return an object
+ * Given a Path to an iChat/Messages transcript, returns an object
  * containing the chat's starting time and participants' names. (Note
  * that transcripts often contain inaccurate timestamps, due to bugs
  * I don't understand. Start times are best understood as
@@ -63,7 +63,7 @@ function metadataFromChat(path) {
 }
 
 /*
- * Given a string representing the path to a Cocoa keyed archive, return
+ * Given a string representing the path to a Cocoa keyed archive, returns
  * an NSKeyedUnarchiver on the archive's data.
  */
 function openNSKeyedUnarchiver(path) {

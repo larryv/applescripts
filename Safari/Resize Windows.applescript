@@ -1,7 +1,7 @@
 (*
- * Resize Windows
+ * Resize Safari Windows
  *
- * Resize all resizable Safari windows to 1080 points × 877 points.
+ * Resizes all resizable Safari windows to 1080 points by 877 points.
  *
  * Last updated 2018-10-16.
  *
@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: MIT
  *)
 
--- Desired dimensions on a display of 1440 pts × 900 pts.
+-- Desired dimensions on a display of 1440 points by 900 points.
 property width : 1080
 property height : 877
 

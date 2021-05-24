@@ -1,8 +1,8 @@
 (*
- * Resize Windows
+ * Resize Google Chrome Windows
  *
- * Resize all resizable Google Chrome windows (except the window for the
- * Google Hangouts extension) to 1080 points × 877 points.
+ * Resizes all resizable Google Chrome windows (except the window for the
+ * Google Hangouts extension) to 1080 points by 877 points.
  *
  * Last updated 2018-10-16.
  *
@@ -10,7 +10,7 @@
  * SPDX-License-Identifier: MIT
  *)
 
--- Desired dimensions on a display of 1440 pts × 900 pts.
+-- Desired dimensions on a display of 1440 points by 900 points.
 property width : 1080
 property height : 877
 

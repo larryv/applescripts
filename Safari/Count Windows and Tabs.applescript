@@ -1,8 +1,8 @@
 (*
- * Count Windows and Tabs
+ * Count Safari Windows and Tabs
  *
- * Count Safari's windows and tabs and display the results. Only windows
- * that are visible or minimized are included.
+ * Counts Safari's visible/minimized windows and tabs and displays the
+ * results.
  *
  * Last updated 2018-10-18.
  *

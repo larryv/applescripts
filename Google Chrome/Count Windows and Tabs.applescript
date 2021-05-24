@@ -1,8 +1,8 @@
 (*
- * Count Windows and Tabs
+ * Count Google Chrome Windows and Tabs
  *
- * Count Google Chrome's windows and tabs and display the results. Only
- * windows that are visible or minimized are included.
+ * Counts Google Chrome's visible/minimized windows and tabs and
+ * displays the results.
  *
  * Last updated 2018-10-18.
  *
