@@ -32,5 +32,5 @@ if id of current application is "at.obdev.LaunchBar" then
         display in large type _alertText with title (my name)
     end using terms from
 else
-    display alert _title message _alertText
+    display alert (my name) message _alertText
 end if
