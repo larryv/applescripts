@@ -10,7 +10,7 @@ scripts can be run directly using `osascript(1)` or compiled using
 `osacompile(1)`. (The [`compile`][compile] script is a convenience
 wrapper for the latter.)
 
-[compile]: compile
+[compile]: ../compile
 [JXA]: https://developer.apple.com/library/archive/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation
     "JavaScript for Automation Release Notes - Apple Developer Documentation Archive"
 [OSA]: https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptX/Concepts/osa.html
