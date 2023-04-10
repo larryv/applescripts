@@ -1,8 +1,8 @@
 README
 ======
 
-Little utilities that I've written in AppleScript and [JavaScript for
-Automation][JXA] (JXA).
+Little utilities that I've written in AppleScript and
+[JavaScript for Automation][JXA] (JXA).
 
 While most [OSA][] script runners can directly handle `.applescript`
 files, I expect that few (if any) support `.js` files. Any of these
