@@ -11,7 +11,7 @@ scripts can be run directly using `osascript(1)` or compiled using
 wrapper for the latter.)
 
 [COMPILE]: ../compile
-[JXA]: https://developer.apple.com/library/archive/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation
+[JXA]: https://developer.apple.com/library/archive/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html
     "JavaScript for Automation Release Notes - Apple Developer Documentation Archive"
 [OSA]: https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptX/Concepts/osa.html
     "Open Scripting Architecture - AppleScript Overview - Apple Developer Documentation Archive"
