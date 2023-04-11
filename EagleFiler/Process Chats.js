@@ -10,14 +10,14 @@
  *      basename:   [YYYY][MM][DD]T[hh][mm][ss]Z [Participants]
  *
  * (Note that transcripts often contain inaccurate timestamps, due to
- * bugs I don't understand. Start times are best understood as
+ * bugs I don't understand.  Start times are best understood as
  * approximations.)
  *
  * Selected records that are not transcripts are not modified.
  *
- * Last updated 2018-11-02.
+ * Last updated 2023-04-11.
  *
- * Copyright 2018 Lawrence Andrew Velázquez
+ * Copyright 2018, 2023 Lawrence Andrew Velázquez
  * SPDX-License-Identifier: MIT
  */
 
@@ -25,7 +25,7 @@
 
 /*
  * Given a Date, returns an object containing string properties for its
- * year, month (01-12), day, hour (00-23), minute, and second. All
+ * year, month (01-12), day, hour (00-23), minute, and second.  All
  * properties other than the year are zero-padded to length 2.
  */
 function getFormattedDateComponentsInUTC(date) {
@@ -42,9 +42,9 @@ function getFormattedDateComponentsInUTC(date) {
 
 /*
  * Given a Path to an iChat/Messages transcript, returns an object
- * containing the chat's starting time and participants' names. (Note
+ * containing the chat's starting time and participants' names.  (Note
  * that transcripts often contain inaccurate timestamps, due to bugs
- * I don't understand. Start times are best understood as
+ * I don't understand.  Start times are best understood as
  * approximations.)
  */
 function metadataFromChat(path) {

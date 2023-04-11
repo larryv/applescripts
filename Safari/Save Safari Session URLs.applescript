@@ -4,7 +4,7 @@
  * Save Safari Session URLs
  *
  * Given one or more Safari session files, extracts all URLs contained
- * therein. Each URL is output with a newline terminator; URLs from the
+ * therein.  Each URL is output with a newline terminator; URLs from the
  * same window are grouped together and separated from other windows'
  * URLs with blank lines.
  *
@@ -20,18 +20,18 @@
  * (Session files can be found at ~/Library/Safari/LastSession.plist and
  * at corresponding locations in backups.)
  *
- * Last updated 2021-05-25.
+ * Last updated 2023-04-11.
  *
- * Copyright 2021 Lawrence Andrew Velázquez
+ * Copyright 2021, 2023 Lawrence Andrew Velázquez
  * SPDX-License-Identifier: MIT
  *)
 
 
 (*
  * On modern versions of macOS, Safari's session files are often stored
- * in locations requiring full disk access. I manage property lists with
- * Foundation instead of System Events so that users won't have to grant
- * full disk access to a seemingly unrelated application.
+ * in locations requiring full disk access.  I manage property lists
+ * with Foundation instead of System Events so that users won't have to
+ * grant full disk access to a seemingly unrelated application.
  *)
 use AppleScript version "2.4"
 use framework "Foundation"
@@ -39,7 +39,7 @@ use scripting additions
 
 (*
  * Given a POSIX path to a property list file, returns a record
- * containing the file's data. Throws an error if the file cannot be
+ * containing the file's data.  Throws an error if the file cannot be
  * parsed as a property list.
  *)
 on deserializePlist(_posixPath as text)
@@ -95,7 +95,7 @@ end getUrlsFromSessionData
  * objects, returns a text object containing all of the sessions' URLs.
  * Each URL is terminated by a newline character, and URLs from the same
  * window are grouped together and separated from other windows' URLs by
- * a blank line. Throws an error if the argument list contains any
+ * a blank line.  Throws an error if the argument list contains any
  * elements that cannot be parsed as a Safari session file.
  *)
 on makeUrlListFromPlists(_plists as list)
@@ -143,7 +143,7 @@ on run _argv
                                        with prompt _prompt ¬
                                        with multiple selections allowed
         on error number -128
-            -- The user canceled the file picker. This is fine.
+            -- The user canceled the file picker.  This is fine.
             return
         end try
 

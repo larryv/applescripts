@@ -5,9 +5,9 @@ Little utilities that I've written in AppleScript and
 [JavaScript for Automation][JXA] (JXA).
 
 While most [OSA][] script runners can directly handle `.applescript`
-files, I expect that few (if any) support `.js` files. Any of these
+files, I expect that few (if any) support `.js` files.  Any of these
 scripts can be run directly using `osascript(1)` or compiled using
-`osacompile(1)`. (The [`compile`][compile] script is a convenience
+`osacompile(1)`.  (The [`compile`][compile] script is a convenience
 wrapper for the latter.)
 
 [compile]: ../compile

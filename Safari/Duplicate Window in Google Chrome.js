@@ -5,9 +5,9 @@
  * the frontmost Safari window (excluding Safari-specific tabs like
  * Bookmarks, Favorites, History, and Top Sites).
  *
- * Last updated 2018-10-18.
+ * Last updated 2023-04-11.
  *
- * Copyright 2018 Lawrence Andrew Velázquez
+ * Copyright 2018, 2023 Lawrence Andrew Velázquez
  * SPDX-License-Identifier: MIT
  */
 
@@ -20,9 +20,9 @@ var Safari = Application('com.apple.Safari');
 
 /*
  * Given a reference to a Safari window, returns an array containing the
- * URIs of the window's tabs. The URIs are ordered by tab position, from
- * left to right. Safari-specific URIs (e.g., "history://") are
- * included. The URI "about:blank" is returned for blank tabs.
+ * URIs of the window's tabs.  The URIs are ordered by tab position,
+ * from left to right.  Safari-specific URIs (e.g., "history://") are
+ * included.  The URI "about:blank" is returned for blank tabs.
  */
 function getSafariURIs(window) {
     // Request tab information in bulk and store it in proxy objects to
@@ -33,14 +33,15 @@ function getSafariURIs(window) {
 
     // There are at least two situations in which Safari returns null
     // for a tab's URI:
-    //   - The tab has not been loaded. When a window is restored,
+    //   - The tab has not been loaded.  When a window is restored,
     //     Safari loads the front tab but defers loading the other tabs
-    //     until the user activates them. However, unloaded tabs do have
-    //     their correct names, which are the titles of their websites.
-    //   - The tab is empty. Safari allows users to open new tabs with
-    //     no content at all. These tabs have the name "Untitled".
+    //     until the user activates them.  However, unloaded tabs do
+    //     have their correct names, which are the titles of their
+    //     websites.
+    //   - The tab is empty.  Safari allows users to open new tabs with
+    //     no content at all.  These tabs have the name "Untitled".
     // I'm not aware of a foolproof method for distinguishing between
-    // these. This function assumes that a tab with a null URI and the
+    // these.  This function assumes that a tab with a null URI and the
     // name "Untitled" is empty and would break on an unloaded tab for
     // a silly website named "Untitled".
     let nullTabs = tabs.filter(({uri}) => !uri);
@@ -51,8 +52,9 @@ function getSafariURIs(window) {
         window.currentTab = initTab;
 
         // Tabs don't load instantaneously, so wait for Safari to load
-        // them in parallel. It would be cleaner to use a "whose" clause
-        // to count remaining null-URI tabs, but that doesn't work.
+        // them in parallel.  It would be cleaner to use a "whose"
+        // clause to count remaining null-URI tabs, but that doesn't
+        // work.
         while (nullTabs.some(({name}) => name !== 'Untitled')) {
             delay(1);
             window.tabs.url().forEach((uri, idx) => { tabs[idx].uri = uri; });
@@ -65,7 +67,7 @@ function getSafariURIs(window) {
         nullTabs.forEach(tab => { tab.uri = 'about:blank'; });
     }
 
-    // Tabs that failed to load report a Safari-specific error URI. The
+    // Tabs that failed to load report a Safari-specific error URI.  The
     // original URI can be extracted from the text of the error page.
     // Tested with Safari 12.0 on macOS 10.13.
     tabs.filter(({uri}) =>
@@ -142,7 +144,7 @@ function run() {
     let currentTabIdx = visibleSafariWindows[0].currentTab.index();
 
     // Safari-specific tabs to the left of the active tab will be
-    // omitted. Adjust the index to account for this.
+    // omitted.  Adjust the index to account for this.
     currentTabIdx -=
         uris.slice(0, currentTabIdx - 1).filter(isSafariSpecialURI).length;
 

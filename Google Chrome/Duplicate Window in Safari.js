@@ -5,9 +5,9 @@
  * the frontmost Chrome window (excluding Chrome-specific tabs like
  * Bookmarks, Extensions, History, and Settings).
  *
- * Last updated 2018-10-18.
+ * Last updated 2023-04-11.
  *
- * Copyright 2018 Lawrence Andrew Velázquez
+ * Copyright 2018, 2023 Lawrence Andrew Velázquez
  * SPDX-License-Identifier: MIT
  */
 
@@ -20,9 +20,9 @@ var Safari = Application('com.apple.Safari');
 
 /*
  * Given a reference to a Chrome window, returns an array containing the
- * URIs of the window's tabs. The URIs are ordered by tab position, from
- * left to right. Chrome-specific URIs (e.g., "chrome://settings") are
- * included.
+ * URIs of the window's tabs.  The URIs are ordered by tab position,
+ * from left to right.  Chrome-specific URIs (e.g., "chrome://settings")
+ * are included.
  */
 function getChromeURIs(window) {
     while (window.tabs.whose({loading: true}).length) {
@@ -77,7 +77,7 @@ function run() {
     let activeTabIdx = visibleChromeWindows[0].activeTabIndex() - 1;
 
     // Chrome-specific tabs to the left of the active tab will be
-    // omitted. Adjust the index to account for this.
+    // omitted.  Adjust the index to account for this.
     activeTabIdx -=
         uris.slice(0, activeTabIdx).filter(isChromeSpecialURI).length;
 
