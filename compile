@@ -5,46 +5,46 @@
 # directory as its source.
 
 if [ "$#" -lt 1 ]; then
-    printf %s\\n 'usage: compile script1 [script2 ...]' >&2
-    exit 1
+	printf %s\\n 'usage: compile script1 [script2 ...]' >&2
+	exit 1
 fi
 
 rc=0
 
 for infile; do
-    case $infile in
-        *?.applescript)
-            osalang=AppleScript
-            outfile=${infile%.*}.scpt
-            ;;
-        *?.js)
-            osalang=JavaScript
-            outfile=${infile%.*}.scpt
-            ;;
-        *)
-            # Be conservative with oddly named files: use the default
-            # language and don't strip extensions.
-            osalang=AppleScript
-            outfile=$infile.scpt
-            ;;
-    esac
+	case $infile in
+		*?.applescript)
+			osalang=AppleScript
+			outfile=${infile%.*}.scpt
+			;;
+		*?.js)
+			osalang=JavaScript
+			outfile=${infile%.*}.scpt
+			;;
+		*)
+			# Be conservative with oddly named files: use the default
+			# language and don't strip extensions.
+			osalang=AppleScript
+			outfile=$infile.scpt
+			;;
+	esac
 
-    shift
-    if osacompile -l "$osalang" -x -o "$outfile" -- "$infile"; then
-        # Collect the output filenames for the grand finale.
-        set -- "$@" "$outfile"
-    else
-        rc=$?
-    fi
+	shift
+	if osacompile -l "$osalang" -x -o "$outfile" -- "$infile"; then
+		# Collect the output filenames for the grand finale.
+		set -- "$@" "$outfile"
+	else
+		rc=$?
+	fi
 done
 
 # Hide the outputs' filename extensions, as Apple's Script Editor does.
 # Discard the result printed by osascript(1), which I don't care about.
 osascript - "$@" >/dev/null <<'EOF' && exit "$rc"
 on run _argv
-    repeat with _arg in _argv
-        set _f to POSIX file _arg as alias
-        tell application "Finder" to set (extension hidden) of _f to true
-    end repeat
+	repeat with _arg in _argv
+		set _f to POSIX file _arg as alias
+		tell application "Finder" to set (extension hidden) of _f to true
+	end repeat
 end run
 EOF
