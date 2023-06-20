@@ -25,25 +25,26 @@ var Safari = Application('com.apple.Safari');
  * included.  The URI "about:blank" is returned for blank tabs.
  */
 function getSafariURIs(window) {
-	// Request tab information in bulk and store it in proxy objects to
-	// minimize the number of Apple events sent.
+	// Request tab information in bulk and store it in proxy objects
+	// to minimize the number of Apple events sent.
 	const tabs = window.tabs().map(ref => ({ref}));
 	window.tabs.name().forEach((name, idx) => { tabs[idx].name = name; });
 	window.tabs.url().forEach((uri, idx) => { tabs[idx].uri = uri; });
 
-	// There are at least two situations in which Safari returns null
-	// for a tab's URI:
+	// There are at least two situations in which Safari returns
+	// null for a tab's URI:
 	//   - The tab has not been loaded.  When a window is restored,
-	//     Safari loads the front tab but defers loading the other tabs
-	//     until the user activates them.  However, unloaded tabs do
-	//     have their correct names, which are the titles of their
-	//     websites.
-	//   - The tab is empty.  Safari allows users to open new tabs with
-	//     no content at all.  These tabs have the name "Untitled".
-	// I'm not aware of a foolproof method for distinguishing between
-	// these.  This function assumes that a tab with a null URI and the
-	// name "Untitled" is empty and would break on an unloaded tab for
-	// a silly website named "Untitled".
+	//     Safari loads the front tab but defers loading the other
+	//     tabs until the user activates them.  However, unloaded
+	//     tabs do have their correct names, which are the titles of
+	//     their websites.
+	//   - The tab is empty.  Safari allows users to open new tabs
+	//     with no content at all.  These tabs have the name
+	//     "Untitled".
+	// I'm not aware of a foolproof method for distinguishing
+	// between these.  This function assumes that a tab with a null
+	// URI and the name "Untitled" is empty and would break on an
+	// unloaded tab for a silly website named "Untitled".
 	let nullTabs = tabs.filter(({uri}) => !uri);
 	if (nullTabs.length) {
 		// Force unloaded tabs to load by activating each one.
@@ -51,25 +52,25 @@ function getSafariURIs(window) {
 		nullTabs.forEach(({ref}) => { window.currentTab = ref; });
 		window.currentTab = initTab;
 
-		// Tabs don't load instantaneously, so wait for Safari to load
-		// them in parallel.  It would be cleaner to use a "whose"
-		// clause to count remaining null-URI tabs, but that doesn't
-		// work.
+		// Tabs don't load instantaneously, so wait for Safari
+		// to load them in parallel.  It would be cleaner to use
+		// a "whose" clause to count remaining null-URI tabs,
+		// but that doesn't work.
 		while (nullTabs.some(({name}) => name !== 'Untitled')) {
 			delay(1);
 			window.tabs.url().forEach((uri, idx) => { tabs[idx].uri = uri; });
 			nullTabs = nullTabs.filter(({uri}) => !uri);
 		}
 
-		// Any remaining null-URI tabs should have the name "Untitled".
-		// Assume these are empty tabs and set an appropriate URI in
-		// their proxy objects.
+		// Any remaining null-URI tabs should have the name
+		// "Untitled".  Assume these are empty tabs and set an
+		// appropriate URI in their proxy objects.
 		nullTabs.forEach(tab => { tab.uri = 'about:blank'; });
 	}
 
-	// Tabs that failed to load report a Safari-specific error URI.  The
-	// original URI can be extracted from the text of the error page.
-	// Tested with Safari 12.0 on macOS 10.13.
+	// Tabs that failed to load report a Safari-specific error URI.
+	// The original URI can be extracted from the text of the error
+	// page.  Tested with Safari 12.0 on macOS 10.13.
 	tabs.filter(({uri}) =>
 		uri === 'file:///Applications/Safari.app/Contents/Resources/' ||
 		uri === 'safari-resource:/ErrorPage.html'
@@ -79,9 +80,10 @@ function getSafariURIs(window) {
 			tab.uri = match[1];
 		} else {
 			window.currentTab = tab;
-			// If there were a way to bring only the relevant window to
-			// the front instead of activating the entire application,
-			// that would be nice.
+			// If there were a way to bring only the
+			// relevant window to the front instead of
+			// activating the entire application, that would
+			// be nice.
 			throwAlert({
 				message: 'Could not obtain URI of current tab.',
 				as: 'critical',
@@ -107,7 +109,8 @@ function isSafariSpecialURI(uri) {
 }
 
 /*
- * Given an array of URIs, creates a new Chrome window with a tab for each.
+ * Given an array of URIs, creates a new Chrome window with a tab for
+ * each.
  */
 function makeNewChromeWindowWithURIs(uris) {
 	let window = Chrome.Window().make();

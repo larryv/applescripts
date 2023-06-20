@@ -22,8 +22,9 @@ for infile; do
 			outfile=${infile%.*}.scpt
 			;;
 		*)
-			# Be conservative with oddly named files: use the default
-			# language and don't strip extensions.
+			# Be conservative with oddly named files: use
+			# the default language and don't strip
+			# extensions.
 			osalang=AppleScript
 			outfile=$infile.scpt
 			;;

@@ -51,7 +51,7 @@ on deserializePlist(_posixPath as text)
 			                   |error|:(reference)
 	end tell
 	if _data is missing value then
-		-- This could be more useful but it's not really worth it.
+		-- This could be more useful but it's not worth it.
 		error localizedDescription of _error as text
 	end if
 
@@ -129,10 +129,11 @@ end open
 on run _argv
 	local _types, _prompt, _plists
 	(*
-	 * When this is run as an applet, _argv is the script application
-	 * itself; within Script Editor, it is an object I don't recognize.
-	 * I can't find documentation on this (but honestly haven't looked
-	 * very hard), so I'm not sure that this test is robust.
+	 * When this is run as an applet, _argv is the script
+	 * application itself; within Script Editor, it is an object
+	 * I don't recognize.  I can't find documentation on this (but
+	 * honestly haven't looked very hard), so I'm not sure that this
+	 * test is robust.
 	 *)
 	if _argv is current application or class of _argv is not list then
 		-- https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepropertylist
@@ -143,11 +144,12 @@ on run _argv
 			                           with prompt _prompt ¬
 			                           with multiple selections allowed
 		on error number -128
-			-- The user canceled the file picker.  This is fine.
+			-- The user canceled the file picker.
 			return
 		end try
 
-		-- Reuse the open handler to ask for the destination location.
+		-- Reuse the open handler to ask for the destination
+		-- location.
 		open _plists
 	else
 		set _plists to {}

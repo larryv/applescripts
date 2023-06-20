@@ -53,8 +53,8 @@ function metadataFromChat(path) {
 	if (metadata.isNil()) {
 		throw new Error(`Could not extract metadata from “${path}”.`);
 	}
-	// Probably unnecessary in this context, but there's something to be
-	// said for doing things properly.
+	// Probably unnecessary in this context, but there's something
+	// to be said for doing things properly.
 	unarchiver.finishDecoding;
 	return {
 		participants: ObjC.deepUnwrap(metadata.objectForKey('Participants')),
