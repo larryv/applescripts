@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -
 
 # Compile the AppleScript or JavaScript for Automation source files
 # provided as arguments, placing each compiled script in the same
